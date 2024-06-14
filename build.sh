@@ -12,4 +12,4 @@ cp -f ./config.gcc ./wxWidgets-3.2.5/build/msw/
 cmd
 cd wxWidgets-3.2.5/build/msw
 D:/a/_temp/setup-msys2/mingw32/bin/make -f makefile.gcc setup_h
-D:/a/_temp/setup-msys2/mingw32/bin/makemake -f makeflie.gcc -j8
+D:/a/_temp/setup-msys2/mingw32/bin/make -f makeflie.gcc -j8
