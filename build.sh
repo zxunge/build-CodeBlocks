@@ -11,4 +11,4 @@ cp -f ./setup.h ./wxWidgets-3.2.5/include/wx/msw/
 cp -f ./config.gcc ./wxWidgets-3.2.5/build/msw/
 cd wxWidgets-3.2.5/build/msw
 mingw32-make -f makefile.gcc setup_h
-mingw32-make -f makeflie.gcc -j8
+mingw32-make -f makefile.gcc -j8
