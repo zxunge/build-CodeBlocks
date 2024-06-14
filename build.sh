@@ -3,7 +3,7 @@
 set -eux
 
 pacman -Syy
-pacman -S --noconfirm  wget git
+pacman -S --noconfirm  wget git mingw-w64-i686-toolchain
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3.2.5.tar.bz2
 tar -jxf ./wxWidgets-3.2.5.tar.bz2
 git clone https://github.com/arnholm/codeblocks_sfmirror.git
