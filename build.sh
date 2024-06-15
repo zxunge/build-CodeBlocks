@@ -12,18 +12,4 @@ pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3.2.5.tar.bz2
 tar -jxf ./wxWidgets-3.2.5.tar.bz2
 git clone https://github.com/arnholm/codeblocks_sfmirror.git
-cp -f ./setup.h ./wxWidgets-3.2.5/include/wx/msw/
-cp -f ./config.gcc ./wxWidgets-3.2.5/build/msw/
-cd wxWidgets-3.2.5/build/msw
-mingw32-make -f makefile.gcc setup_h
-mingw32-make -f makefile.gcc -j8
-
-7zr a -mx9 -mqs=on -mmt=on /home/${NAME}.7z ../../lib
-
-if [[ -v GITHUB_WORKFLOW ]]; then
-  echo "OUTPUT_BINARY=${HOME}/${NAME}.7z" >> $GITHUB_OUTPUT
-  echo "RELEASE_NAME=CodeBlocks-r${CBREV_NO}-wxWidgets-${WXMSW_VERSION}" >> $GITHUB_OUTPUT
-  echo "WXMSW_VERSION=${WXMSW_VERSION}" >> $GITHUB_OUTPUT
-  echo "CBREV_NO=${CBREV_NO}" >> $GITHUB_OUTPUT
-  echo "OUTPUT_NAME=${NAME}.7z" >> $GITHUB_OUTPUT
-fi
+./cbp2make/cbp2make -in ./codeblocks_sfmirror/src/CodeBlocks_wx32.cbp -out ./codeblocks_sfmirror/src/makefile-core
