@@ -5,7 +5,7 @@ set -eux
 WXMSW_VERSION=3.2.5
 CBREV_NO=13529
 NAME=CodeBlocks-r${CBREV_NO}-wxWidgets-${WXMSW_VERSION}
-PWD=$(pwd)
+PWD=$(cygpath -m .)
 
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
