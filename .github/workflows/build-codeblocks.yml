@@ -20,7 +20,7 @@ jobs:
 
       - shell: msys2 {0}
         id: buildwx
-        run: ./build.sh
+        run: ./buildwx.sh
 
       - shell: cmd
         id: buildcb
