@@ -13,3 +13,4 @@ wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3
 tar -jxf ./wxWidgets-3.2.5.tar.bz2
 git clone https://github.com/arnholm/codeblocks_sfmirror.git
 ./cbp2make/cbp2make -in ./codeblocks_sfmirror/src/CodeBlocks_wx32.cbp -out ./codeblocks_sfmirror/src/makefile-core
+cat ./codeblocks_sfmirror/src/makefile-core
