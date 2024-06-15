@@ -12,7 +12,7 @@ MINGW32=$(cygpath -m /mingw32)
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
 
-cp -r ./cbp2make /home/
+cp -r * /home/
 
 # Building at /home for convenience
 cd /home
