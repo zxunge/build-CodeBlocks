@@ -22,6 +22,15 @@ jobs:
         id: build
         run: ./build.sh
 
+      - shell: cmd
+        id: buildcb
+        run: |
+          cd /d ${{ steps.build.outputs.MINGW32 }}
+          .\mingw32-make -f                \
+            ${{ steps.build.outputs.HOME }}\codeblocks_sfmirror\src\makefile-core    \
+            WX32_INCLUDE=${{ steps.build.outputs.HOME }}\wxWidgets-3.2.5\include     \
+            WX32_LIB=${{ steps.build.outputs.HOME }}\wxWidgets-3.2.5\lib
+
       - name: release
         id: release
         uses: actions/create-release@v1
