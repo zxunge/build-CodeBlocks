@@ -6,7 +6,7 @@ WXMSW_VERSION=3.2.5
 CBREV_NO=13529
 NAME=CodeBlocks-r${CBREV_NO}-wxWidgets-${WXMSW_VERSION}
 HOME=$(cygpath -m /home)
-MINGW32=$(cygpath -m /mingw32)
+MINGW32=$(cygpath -m /mingw32/bin)
 
 # Install dependencies
 pacman -Syy
