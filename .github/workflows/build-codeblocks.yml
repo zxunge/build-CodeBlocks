@@ -19,4 +19,28 @@ jobs:
           msystem: MINGW32
 
       - shell: msys2 {0}
+        id: build
         run: ./build.sh
+
+      - name: release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          body: |
+            wxWidgets v${{ steps.build.outputs.WXMSW_VERSION }}
+            CodeBlocks r${{ steps.build.outputs.CBREVNO }}
+
+      - name: upload
+        id: upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./${{ steps.build.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.build.outputs.OUTPUT_BINARY }}
+          asset_content_type: application/x-7z-compressed
