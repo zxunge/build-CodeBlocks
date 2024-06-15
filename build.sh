@@ -2,6 +2,10 @@
 
 set -eux
 
+WXMSW_VERSION=3.2.5
+CBREVNO=13529
+NAME=CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}
+
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3.2.5.tar.bz2
@@ -12,3 +16,7 @@ cp -f ./config.gcc ./wxWidgets-3.2.5/build/msw/
 cd wxWidgets-3.2.5/build/msw
 mingw32-make -f makefile.gcc setup_h
 mingw32-make -f makefile.gcc -j8
+if [[ -v GITHUB_WORKFLOW ]]; then
+  echo "::set-output name=OUTPUT_BINARY::${NAME}.7z"
+  echo "::set-output name=RELEASE_NAME::CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}"
+fi
