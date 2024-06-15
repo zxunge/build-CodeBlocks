@@ -42,5 +42,5 @@ jobs:
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
           asset_path: ${{ steps.build.outputs.OUTPUT_BINARY }}
-          asset_name: ${{ steps.build.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.build.outputs.OUTPUT_NAME }}
           asset_content_type: application/x-7z-compressed
