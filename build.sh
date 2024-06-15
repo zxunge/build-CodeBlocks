@@ -20,6 +20,6 @@ mingw32-make -f makefile.gcc -j8
 7zr a -mx9 -mqs=on -mmt=on ./${NAME}.7z ../../lib
 
 if [[ -v GITHUB_WORKFLOW ]]; then
-  echo "${OUTPUT_BINARY}=${NAME}.7z" >> ${GITHUB_OUTPUT}
-  echo "${RELEASE_NAME}=CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}" >> ${GITHUB_OUTPUT}
+  echo "OUTPUT_BINARY=${NAME}.7z" >> $GITHUB_OUTPUT
+  echo "RELEASE_NAME=CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}" >> $GITHUB_OUTPUT
 fi
