@@ -3,8 +3,9 @@
 set -eux
 
 WXMSW_VERSION=3.2.5
-CBREVNO=13529
-NAME=CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}
+CBREV_NO=13529
+NAME=CodeBlocks-r${CBREV_NO}-wxWidgets-${WXMSW_VERSION}
+PWD=$(pwd)
 
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
@@ -20,6 +21,8 @@ mingw32-make -f makefile.gcc -j8
 7zr a -mx9 -mqs=on -mmt=on ./${NAME}.7z ../../lib
 
 if [[ -v GITHUB_WORKFLOW ]]; then
-  echo "OUTPUT_BINARY=${NAME}.7z" >> $GITHUB_OUTPUT
-  echo "RELEASE_NAME=CodeBlocks-r${CBREVNO}-wxWidgets-${WXMSW_VERSION}" >> $GITHUB_OUTPUT
+  echo "OUTPUT_BINARY=${PWD}/${NAME}.7z" >> $GITHUB_OUTPUT
+  echo "RELEASE_NAME=CodeBlocks-r${CBREV_NO}-wxWidgets-${WXMSW_VERSION}" >> $GITHUB_OUTPUT
+  echo "WXMSW_VERSION=${WXMSW_VERSION}" >> $GITHUB_OUTPUT
+  echo "CBREV_NO=${CBREV_NO}" >> $GITHUB_OUTPUT
 fi
