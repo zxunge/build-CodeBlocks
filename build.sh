@@ -12,6 +12,8 @@ MINGW32=$(cygpath -m /mingw32)
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
 
+cp * /home/
+
 # Building at /home for convenience
 cd /home
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v${WXMSW_VERSION}/wxWidgets-${WXMSW_VERSION}.tar.bz2
