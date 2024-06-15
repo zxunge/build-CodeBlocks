@@ -17,7 +17,7 @@ cd wxWidgets-3.2.5/build/msw
 mingw32-make -f makefile.gcc setup_h
 mingw32-make -f makefile.gcc -j8
 
-7zr a -mx9 -mqs=on -mmt=on ${NAME}.7z ../../lib
+7zr a -mx9 -mqs=on -mmt=on ./${NAME}.7z ../../lib
 
 if [[ -v GITHUB_WORKFLOW ]]; then
   echo "::set-output name=OUTPUT_BINARY::${NAME}.7z"
