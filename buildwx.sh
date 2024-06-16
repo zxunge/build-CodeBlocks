@@ -20,7 +20,7 @@ cd /home
 
 git clone https://github.com/arnholm/codeblocks_sfmirror.git
 ./cbp2make/cbp2make -in ./codeblocks_sfmirror/src/CodeBlocks_wx32.cbp -out ./codeblocks_sfmirror/src/makefile-core
-cat makefile-core
+cat ./codeblocks_sfmirror/src/makefile-core
 
 
 # We return to cmd to build CodeBlocks, pass some paths
