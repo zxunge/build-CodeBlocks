@@ -28,17 +28,24 @@ jobs:
           cd /d ${{ steps.buildwx.outputs.MINGW32 }}
           .\mingw32-make -f ${{ steps.buildwx.outputs.HOME }}\codeblocks_sfmirror\src\makefile-core WX32_INCLUDE=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\include WX32_LIB=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\lib all
 
+      - name: prepare-release
+        id: prepare-release
+        shell: msys2 {0}
+        run: |
+          cd /home
+          ./release.sh
+        
       - name: release
         id: release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.buildwx.outputs.RELEASE_NAME }}
-          release_name: ${{ steps.buildwx.outputs.RELEASE_NAME }}
+          tag_name: ${{ steps.prepare-release.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.prepare-buildwx.outputs.RELEASE_NAME }}
           body: |
-            wxWidgets v${{ steps.buildwx.outputs.WXMSW_VERSION }}
-            CodeBlocks r${{ steps.buildwx.outputs.CBREV_NO }}
+            wxWidgets v${{ steps.prepare-release.outputs.WXMSW_VERSION }}
+            CodeBlocks r${{ steps.prepare-release.outputs.CBREV_NO }}
 
       - name: upload
         id: upload
@@ -47,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ${{ steps.buildwx.outputs.OUTPUT_BINARY }}
-          asset_name: ${{ steps.buildwx.outputs.OUTPUT_NAME }}
+          asset_path: ${{ steps.prepare-release.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.prepare-release.outputs.OUTPUT_NAME }}
           asset_content_type: application/x-7z-compressed
