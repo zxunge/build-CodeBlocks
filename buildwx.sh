@@ -12,6 +12,9 @@ MINGW32=$(cygpath -m /mingw32/bin)
 pacman -Syy
 pacman -S --noconfirm  wget git mingw-w64-i686-toolchain p7zip
 
+# Delete the existing mingw64 at C: to avoid conflicting
+rm -rf /c/mingw64
+
 # Building at /home for convenience
 cp -r * /home/
 cd /home
