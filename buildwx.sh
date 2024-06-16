@@ -34,7 +34,7 @@ mingw32-make -f makefile.gcc setup_h
 mingw32-make -f makefile.gcc -j$(nproc)
 
 # zip, neede by building CodeBlocks
-cp -f ./zip/* /mingw32/bin
+cp -f /home/zip/* /mingw32/bin
 
 # We return to cmd to build CodeBlocks, pass some paths
 echo "HOME=${HOME}" >> $GITHUB_OUTPUT
