@@ -18,13 +18,13 @@ jobs:
         with:
           msystem: MINGW32
 
-      - shell: msys2 {0}
+      - name: build wxWidgets
+        shell: msys2 {0}
         id: buildwx
-        run: |
-          rm -rf /c/mingw64
-          ./buildwx.sh
+        run: ./buildwx.sh
 
-      - shell: cmd
+      - name: build CodeBlocks
+        shell: cmd
         id: buildcb
         run: |
           set PATH=%PATH%;${{ steps.buildwx.outputs.MINGW32 }}
