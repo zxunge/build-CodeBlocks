@@ -29,7 +29,7 @@ jobs:
         run: |
           set PATH=%PATH%;${{ steps.buildwx.outputs.MINGW32 }}
           cd /d ${{ steps.buildwx.outputs.HOME }}\codeblocks_sfmirror\src
-          mingw32-make -f makefile-core WX32_INCLUDE=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\include WX32_LIB=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\lib all -j$(nproc)
+          mingw32-make -f makefile-core WX32_INCLUDE=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\include WX32_LIB=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\lib all -j4
           .\update32.bat
 
       - name: prepare-release
