@@ -17,27 +17,15 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW32
-
-      - name: build wxWidgets
-        shell: msys2 {0}
-        id: buildwx
-        run: ./buildwx.sh
+          update: true
+          install: >-
+            p7zip
+            git
 
       - name: build CodeBlocks
-        shell: cmd
-        id: buildcb
-        run: |
-          set PATH=%PATH%;${{ steps.buildwx.outputs.MINGW32 }}
-          cd /d ${{ steps.buildwx.outputs.HOME }}\codeblocks_sfmirror\src
-          mingw32-make -f makefile-core WX32_INCLUDE=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\include WX32_LIB=${{ steps.buildwx.outputs.HOME }}\wxWidgets-3.2.5\lib all -j4
-          .\update32.bat
-
-      - name: prepare-release
-        id: prepare-release
         shell: msys2 {0}
-        run: |
-          cd /home
-          ./release.sh
+        id: buildcb
+        run: ./build.sh
         
       - name: release
         id: release
@@ -45,11 +33,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.prepare-release.outputs.RELEASE_NAME }}
-          release_name: ${{ steps.prepare-buildwx.outputs.RELEASE_NAME }}
+          tag_name: ${{ steps.buildcb.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.buildcb.outputs.RELEASE_NAME }}
           body: |
-            wxWidgets v${{ steps.prepare-release.outputs.WXMSW_VERSION }}
-            CodeBlocks r${{ steps.prepare-release.outputs.CBREV_NO }}
+            wxWidgets v${{ steps.buildcb.outputs.WXMSW_VERSION }}
+            CodeBlocks r${{ steps.buildcb.outputs.CBREV_NO }}
 
       - name: upload
         id: upload
@@ -58,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ${{ steps.prepare-release.outputs.OUTPUT_BINARY }}
-          asset_name: ${{ steps.prepare-release.outputs.OUTPUT_NAME }}
+          asset_path: ${{ steps.buildcb.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.buildcb.outputs.OUTPUT_NAME }}
           asset_content_type: application/x-7z-compressed
