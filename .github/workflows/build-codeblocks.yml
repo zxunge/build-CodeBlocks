@@ -26,6 +26,8 @@ jobs:
             mingw-w64-i686-wxwidgets3.2-common
             mingw-w64-i686-wxwidgets3.2-msw
             mingw-w64-i686-wxwidgets3.2-msw-cb_headers
+            mingw-w64-i686-toolchain
+            base-devel
 
       - name: build CodeBlocks
         shell: msys2 {0}
