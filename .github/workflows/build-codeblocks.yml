@@ -21,6 +21,11 @@ jobs:
           install: >-
             p7zip
             git
+            hunspell
+            zip
+            mingw-w64-i686-wxwidgets3.2-common
+            mingw-w64-i686-wxwidgets3.2-msw
+            mingw-w64-i686-wxwidgets3.2-msw-cb_headers
 
       - name: build CodeBlocks
         shell: msys2 {0}
