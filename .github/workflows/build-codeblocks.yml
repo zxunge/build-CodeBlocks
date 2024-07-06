@@ -29,7 +29,8 @@ jobs:
             mingw-w64-i686-toolchain
             libtool
             base-devel
-            autotools-wrappers
+            automake-wrapper
+            autoconf-wrapper
 
       - name: build CodeBlocks
         shell: msys2 {0}
