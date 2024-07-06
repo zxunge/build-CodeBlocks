@@ -21,7 +21,7 @@ jobs:
           install: >-
             p7zip
             git
-            hunspell
+            mingw-w64-i686-hunspell
             zip
             mingw-w64-i686-wxwidgets3.2-common
             mingw-w64-i686-wxwidgets3.2-msw
