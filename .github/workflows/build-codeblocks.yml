@@ -25,14 +25,13 @@ jobs:
             automake-wrapper
             autoconf-wrapper
             mingw-w64-i686-drmingw
-
-#p7zip
-#mingw-w64-i686-hunspell
-#zip
-#mingw-w64-i686-wxwidgets3.2-common
-#mingw-w64-i686-wxwidgets3.2-msw
-#mingw-w64-i686-wxwidgets3.2-msw-cb_headers
-#mingw-w64-i686-toolchain
+            p7zip
+            mingw-w64-i686-hunspell
+            zip
+            mingw-w64-i686-wxwidgets3.2-common
+            mingw-w64-i686-wxwidgets3.2-msw
+            mingw-w64-i686-wxwidgets3.2-msw-cb_headers
+            mingw-w64-i686-toolchain
 
       - name: build CodeBlocks
         shell: msys2 {0}
