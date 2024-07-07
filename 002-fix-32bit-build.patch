@@ -1,0 +1,14 @@
+diff -Naur a/src/src/Makefile.am b/src/src/Makefile.am
+--- a/src/src/Makefile.am	2024-05-16 02:37:04.375681200 +0200
++++ b/src/src/Makefile.am	2024-05-16 01:38:51.511735400 +0200
+@@ -74,8 +74,9 @@
+ codeblocks_LDADD += resources.$(OBJEXT) -lexchndl -lcomctl32
+ codeblocks_DEPENDENCIES = resources.$(OBJEXT)
+ codeblocks_SOURCES += associations.cpp
++# do not use WX_CXXFLAGS that one add's the -mthreads flag which windres does not understand.
+ resources.$(OBJEXT): resources/resources.rc resources/amd64_dpi_aware_on.manifest
+-	$(WINDRES) $(WX_CXXFLAGS) -DcbDPI_AWARE_ON --include-dir $(top_srcdir)/src $< $@
++	$(WINDRES) $(WX_CPPFLAGS) -DcbDPI_AWARE_ON --include-dir $(top_srcdir)/src $< $@
+ endif
+ 
+ noinst_HEADERS = app.h \
