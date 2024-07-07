@@ -19,14 +19,14 @@ jobs:
           msystem: MINGW32
           update: true
           install: >-
-            p7zip
+            #p7zip
             git
-            mingw-w64-i686-hunspell
-            zip
-            mingw-w64-i686-wxwidgets3.2-common
-            mingw-w64-i686-wxwidgets3.2-msw
-            mingw-w64-i686-wxwidgets3.2-msw-cb_headers
-            mingw-w64-i686-toolchain
+            #mingw-w64-i686-hunspell
+            #zip
+            #mingw-w64-i686-wxwidgets3.2-common
+            #mingw-w64-i686-wxwidgets3.2-msw
+            #mingw-w64-i686-wxwidgets3.2-msw-cb_headers
+            #mingw-w64-i686-toolchain
             libtool
             base-devel
             automake-wrapper
