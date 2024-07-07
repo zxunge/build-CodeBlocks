@@ -10,7 +10,7 @@ RELEASE_NAME=CodeBlocks-r${CBREV_NO}-wx${WXMSW_VERSION}
 git clone https://github.com/arnholm/codeblocks_sfmirror.git
 
 cd codeblocks_sfmirror/
-git apply -v ../002-fix-32bit-build.patch
+cp -f ../Makefile.am src/src/
 ./bootstrap
 ./configure --prefix=$HOME/codeblocks --with-contrib-plugins=all,-NassiShneiderman
 
