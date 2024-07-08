@@ -1,7 +1,10 @@
 name: build-codeblocks
 
 # Controls when the workflow will run
-on: workflow_dispatch
+on: 
+  push:
+    branches:
+      main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,9 +31,9 @@ jobs:
             p7zip
             mingw-w64-i686-hunspell
             zip
-            mingw-w64-i686-wxwidgets3.2-common
-            mingw-w64-i686-wxwidgets3.2-msw
-            mingw-w64-i686-wxwidgets3.2-msw-cb_headers
+            mingw-w64-i686-wxwidgets3.2-common-3.2.4
+            mingw-w64-i686-wxwidgets3.2-msw-3.2.4
+            mingw-w64-i686-wxwidgets3.2-msw-cb_headers-3.2.4
             mingw-w64-i686-toolchain
 
       - name: build CodeBlocks
